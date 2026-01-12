@@ -1,0 +1,50 @@
+<div class="container mt-4">
+  <h2 class="mb-3">Lista de Vagas</h2>
+
+  <div class="d-flex justify-content-end mb-3">
+    <a routerLink="/vagas/nova" class="btn btn-success">
+      Nova Vaga
+    </a>
+  </div>
+
+  <table class="table table-striped table-bordered" *ngIf="vagas.length > 0">
+    <thead class="table-dark">
+      <tr>
+        <th>Empresa</th>
+        <th>Cargo</th>
+        <th>Status</th>
+        <th>Observações</th>
+        <th>Ações</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr *ngFor="let vaga of vagas">
+        <td>{{ vaga.empresa }}</td>
+        <td>{{ vaga.cargo }}</td>
+        <td>{{ vaga.status }}</td>
+        <td>{{ vaga.observacoes }}</td>
+
+        <td class="text-nowrap">
+          <div class="d-flex gap-2">
+            <a
+              class="btn btn-warning btn-sm"
+              [routerLink]="['/vagas/editar', vaga.id]">
+              Editar
+            </a>
+
+            <button
+              class="btn btn-danger btn-sm"
+              (click)="excluir(vaga.id!)">
+              Excluir
+            </button>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="alert alert-info" *ngIf="vagas.length === 0">
+    Nenhuma vaga cadastrada.
+  </div>
+</div>
