@@ -1,59 +1,106 @@
-# ControleVagasFront
+# Controle de Vagas — Frontend (Angular)
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.0.4.
+Frontend em Angular para consumo da API REST **Controle de Vagas**, permitindo gerenciar candidaturas de emprego/estágio (CRUD completo).
 
-## Development server
+Este projeto faz parte de uma aplicação full-stack:
+- **Frontend:** Angular  
+- **Backend:** Spring Boot  
+- **Banco:** PostgreSQL  
 
-To start a local development server, run:
+---
 
-```bash
+## Visão Geral
+
+A aplicação permite:
+
+- Listar vagas
+- Criar nova vaga
+- Editar vaga existente
+- Visualizar dados da vaga
+- Excluir vaga
+
+O frontend consome uma **API REST** desenvolvida em Spring Boot, trocando dados via **HTTP + JSON**.
+
+---
+
+## Tecnologias Utilizadas
+
+- Angular 17
+- TypeScript
+- Bootstrap
+- Angular Router
+- HttpClient
+- Git & GitHub
+
+---
+
+## Arquitetura do Frontend
+
+O projeto segue uma arquitetura organizada em camadas:
+src/app
+│
+├── core
+│ ├── models → Interfaces dos dados (Vaga)
+│ └── services → Comunicação HTTP com o backend
+│
+├── pages
+│ ├── vaga-lista → Tela de listagem
+│ └── vaga-form → Tela de criação e edição
+│
+├── app.routes.ts → Rotas da aplicação
+└── app.html → Contém o <router-outlet>
+
+
+### Princípios aplicados
+- Separação de responsabilidades
+- Reutilização de componentes
+- SPA (Single Page Application)
+- Integração real com backend
+
+---
+
+## Comunicação com o Backend
+
+O frontend se comunica com o backend via **HTTP** usando o serviço `VagaService`.
+
+Base URL da API:
+http://localhost:8080
+
+Endpoints consumidos:
+
+| Método | Endpoint           | Função            |
+|--------|--------------------|-------------------|
+| GET    | /vagas             | Listar vagas      |
+| GET    | /vagas/{id}        | Buscar por ID     |
+| POST   | /vagas             | Criar vaga        |
+| PUT    | /vagas/{id}        | Atualizar vaga    |
+| DELETE | /vagas/{id}        | Excluir vaga      |
+
+---
+
+## Funcionamento Geral
+
+1. O usuário interage com o frontend (Angular)
+2. O Angular envia requisições HTTP para o backend
+3. O backend processa e acessa o banco de dados
+4. O backend retorna JSON
+5. O Angular exibe os dados na tela
+
+---
+
+## Como Executar
+
+## Pré-requisitos
+- Node.js
+- Angular CLI
+- Backend rodando em `http://localhost:8080`
+
+## Instalar dependências
+npm install
+
+## Rode o projeto
 ng serve
-```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+## Acesse:
+http://localhost:4200
 
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
-```bash
-ng generate component component-name
-```
-
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
-
-```bash
-ng generate --help
-```
-
-## Building
-
-To build the project run:
-
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
